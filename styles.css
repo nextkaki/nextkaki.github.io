@@ -6,6 +6,12 @@
     font-size: 16px;
 }
 
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
 .header a, .footer a {
     color: #fff; /* 링크 색상 */
     text-decoration: none; /* 밑줄 제거 */
@@ -29,6 +35,7 @@ body {
 .container {
     width: 80%;
     margin: auto;
+    padding-bottom: 100px;
 }
 
 table.dataTable {
