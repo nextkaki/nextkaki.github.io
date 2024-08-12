@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $.getJSON("data.json", function(data) {
+    $.getJSON("https://nextkaki.github.io/data.json", function(data) {
         // 에테르 값을 기준으로 내림차순 정렬
         data.sort(function(a, b) {
             return b.에테르 - a.에테르;
