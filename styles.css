@@ -22,6 +22,10 @@ body {
     text-align: center;
 }
 
+.logo {
+    margin: 15px 0;
+}
+
 .container {
     width: 80%;
     margin: auto;
@@ -81,12 +85,12 @@ table.dataTable tbody td a:hover {
 }
 
 /* select 박스 글자색과 배경색 변경 */
-.dataTables_length select {
+#dt-length-0 {
     color: #000; /* 글자색을 검정으로 변경 */
     background-color: #fff; /* 배경색을 흰색으로 변경 */
 }
 
-.dataTables_length select option {
+#dt-length-0 option {
     color: #000; /* 드롭다운 메뉴의 글자색을 검정으로 변경 */
     background-color: #fff; /* 드롭다운 메뉴의 배경색을 흰색으로 변경 */
 }
