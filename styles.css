@@ -1,3 +1,20 @@
+.header, .footer {
+    background-color: #444;
+    color: #fff;
+    padding: 3px 0;
+    text-align: center;
+    font-size: 16px;
+}
+
+.header a, .footer a {
+    color: #fff; /* 링크 색상 */
+    text-decoration: none; /* 밑줄 제거 */
+}
+
+.header a:hover, .footer a:hover {
+    text-decoration: underline; /* 마우스 오버 시 밑줄 추가 */
+}
+
 body {
     font-family: "Source Sans 3", Source Sans Pro, sans-serif;
     background-color: #222;
@@ -24,12 +41,12 @@ table.dataTable thead {
 
 table.dataTable thead th {
     color: #dadada;
-    font-size: 20px; /* th 폰트 크기 */
+    font-size: 20px; /* 상단 컬럼 폰트 크기 */
     font-weight: bold; /* th 폰트 스타일 */
 }
 
 table.dataTable tbody td {
-    font-size: 16px; /* td 폰트 크기 */
+    font-size: 16px; /* 데이터 레코드 폰트 크기 */
     padding: 8px; /* 여백 추가 */
 }
 
