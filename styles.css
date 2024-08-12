@@ -1,0 +1,34 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #222;
+    color: #fff;
+    text-align: center;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+}
+
+table.dataTable {
+    background-color: #333;
+    color: #fff;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table.dataTable thead {
+    background-color: #444;
+}
+
+table.dataTable thead th {
+    color: #00f;
+}
+
+table.dataTable tbody tr:nth-child(even) {
+    background-color: #444;
+}
+
+table.dataTable tbody tr:nth-child(odd) {
+    background-color: #333;
+}
