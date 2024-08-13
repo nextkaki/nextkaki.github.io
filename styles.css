@@ -29,6 +29,11 @@ body {
     text-align: center;
 }
 
+.rule {
+    text-align: left;
+    margin: 15px 0;
+}
+
 .logo {
     margin: 15px 0;
 }
