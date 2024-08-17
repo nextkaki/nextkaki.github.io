@@ -93,6 +93,19 @@ table.dataTable tbody td a:hover {
     text-decoration: underline; /* 마우스 오버 시 밑줄 추가 */
 }
 
+a {
+    color: #fff; /* 기본 링크 색상 */
+    text-decoration: none; /* 링크 밑줄 제거 */
+}
+
+a:visited {
+    color: #fff; /* 방문한 후 */
+}
+
+a:hover {
+    text-decoration: underline; /* 마우스 오버 시 밑줄 추가 */
+}
+
 /* <nav> 안의 버튼 글자색 변경 */
 .paginate_button {
     color: #00f; /* 원하는 색상으로 변경 */
