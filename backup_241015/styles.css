@@ -1,0 +1,128 @@
+.header, .footer {
+    background-color: #444;
+    color: #fff;
+    padding: 3px 0;
+    text-align: center;
+    font-size: 16px;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.header a, .footer a {
+    color: #fff; /* 링크 색상 */
+    text-decoration: none; /* 밑줄 제거 */
+}
+
+.header a:hover, .footer a:hover {
+    text-decoration: underline; /* 마우스 오버 시 밑줄 추가 */
+}
+
+body {
+    margin: 0;
+    font-family: "Source Sans 3", Source Sans Pro, sans-serif;
+    background-color: #222;
+    color: #fff;
+    text-align: center;
+}
+
+.rule {
+    text-align: left;
+    margin: 15px 0;
+}
+
+.notify_refresh{
+    margin: 15px 0;
+    text-align: right;
+}
+
+.logo {
+    margin: 15px 0;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    padding-bottom: 100px;
+}
+
+table.dataTable {
+    background-color: #333;
+    color: #fff;
+    border-collapse: collapse;
+    width: 100%;
+    text-align: left; /* 좌측 정렬 */
+}
+
+table.dataTable thead {
+    background-color: #444;
+}
+
+table.dataTable thead th {
+    color: #dadada;
+    font-size: 20px; /* 상단 컬럼 폰트 크기 */
+    font-weight: bold; /* th 폰트 스타일 */
+}
+
+table.dataTable tbody td {
+    font-size: 16px; /* 데이터 레코드 폰트 크기 */
+    padding: 8px; /* 여백 추가 */
+}
+
+table.dataTable tbody tr:nth-child(even) {
+    background-color: #444;
+}
+
+table.dataTable tbody tr:nth-child(odd) {
+    background-color: #333;
+}
+
+table.dataTable tbody td a {
+    color: #fff; /* 기본 링크 색상 */
+    text-decoration: none; /* 링크 밑줄 제거 */
+}
+
+table.dataTable tbody td a:visited {
+    color: #fff; /* 방문한 후 */
+}
+
+table.dataTable tbody td a:hover {
+    text-decoration: underline; /* 마우스 오버 시 밑줄 추가 */
+}
+
+a {
+    color: #fff; /* 기본 링크 색상 */
+    text-decoration: none; /* 링크 밑줄 제거 */
+}
+
+a:visited {
+    color: #fff; /* 방문한 후 */
+}
+
+a:hover {
+    text-decoration: underline; /* 마우스 오버 시 밑줄 추가 */
+}
+
+/* <nav> 안의 버튼 글자색 변경 */
+.paginate_button {
+    color: #00f; /* 원하는 색상으로 변경 */
+}
+
+.paginate_button:hover {
+    color: #fff; /* 마우스 오버 시 글자색 */
+}
+
+/* select 박스 글자색과 배경색 변경 */
+#dt-length-0 {
+    color: #000; /* 글자색을 검정으로 변경 */
+    background-color: #fff; /* 배경색을 흰색으로 변경 */
+}
+
+#dt-length-0 option {
+    color: #000; /* 드롭다운 메뉴의 글자색을 검정으로 변경 */
+    background-color: #fff; /* 드롭다운 메뉴의 배경색을 흰색으로 변경 */
+}
+

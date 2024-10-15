@@ -1,0 +1,201 @@
+<div class="container mt-5">
+    <h1>룬 목록</h1>
+  
+    <!-- 검색 바 -->
+    <div class="search-bar">
+      <input type="text" id="searchInput" class="form-control" placeholder="룬 이름 검색..." onkeyup="filterRunes()">
+    </div>
+  
+    <!-- 룬 목록 -->
+    <div id="runeList">
+        <div class="rune-list">
+            <span class="rune-name">아후 (Ahu)</span>
+            <a href="#" onclick="openRuneLink('Ahu')" class="rune-link">아후 판매 링크</a>
+          </div>
+          <div class="rune-list">
+            <span class="rune-name">바크 (Bac)</span>
+            <a href="#" onclick="openRuneLink('Bac')" class="rune-link">바크 판매 링크</a>
+          </div>
+          <div class="rune-list">
+            <span class="rune-name">리트 (Lith)</span>
+            <a href="#" onclick="openRuneLink('Lith')" class="rune-link">리트 판매 링크</a>
+          </div>
+          <div class="rune-list">
+            <span class="rune-name">탐 (Tam)</span>
+            <a href="#" onclick="openRuneLink('Tam')" class="rune-link">탐 판매 링크</a>
+          </div>
+          <div class="rune-list">
+            <span class="rune-name">졸 (Xol)</span>
+            <a href="#" onclick="openRuneLink('Xol')" class="rune-link">졸 판매 링크</a>
+          </div>
+          <div class="rune-list">
+            <span class="rune-name">율 (Yul)</span>
+            <a href="#" onclick="openRuneLink('Yul')" class="rune-link">율 판매 링크</a>
+          </div>
+          <div class="rune-list">
+            <span class="rune-name">페오 (Feo)</span>
+            <a href="#" onclick="openRuneLink('Feo')" class="rune-link">페오 판매 링크</a>
+          </div>
+          <div class="rune-list">
+            <span class="rune-name">네오 (Neo)</span>
+            <a href="#" onclick="openRuneLink('Neo')" class="rune-link">네오 판매 링크</a>
+          </div>
+          <div class="rune-list">
+            <span class="rune-name">녹 (Noc)</span>
+            <a href="#" onclick="openRuneLink('Noc')" class="rune-link">녹 판매 링크</a>
+          </div>
+          <div class="rune-list">
+            <span class="rune-name">포크 (Poc)</span>
+            <a href="#" onclick="openRuneLink('Poc')" class="rune-link">포크 판매 링크</a>
+          </div>
+          <div class="rune-list">
+            <span class="rune-name">쳄 (Cem)</span>
+            <a href="#" onclick="openRuneLink('Cem')" class="rune-link">쳄 판매 링크</a>
+          </div>
+          <div class="rune-list">
+            <span class="rune-name">시르 (Cir)</span>
+            <a href="#" onclick="openRuneLink('Cir')" class="rune-link">시르 판매 링크</a>
+          </div>
+          <div class="rune-list">
+            <span class="rune-name">모니 (Moni)</span>
+            <a href="#" onclick="openRuneLink('Moni')" class="rune-link">모니 판매 링크</a>
+          </div>
+          <div class="rune-list">
+            <span class="rune-name">약스 (Yax)</span>
+            <a href="#" onclick="openRuneLink('Yax')" class="rune-link">약스 판매 링크</a>
+          </div>
+          <div class="rune-list">
+            <span class="rune-name">잔 (Zan)</span>
+            <a href="#" onclick="openRuneLink('Zan')" class="rune-link">잔 판매 링크</a>
+          </div>
+          <div class="rune-list">
+            <span class="rune-name">에옴 (Eom)</span>
+            <a href="#" onclick="openRuneLink('Eom')" class="rune-link">에옴 판매 링크</a>
+          </div>
+          <div class="rune-list">
+            <span class="rune-name">자 (Jah)</span>
+            <a href="#" onclick="openRuneLink('Jah')" class="rune-link">자 판매 링크</a>
+          </div>
+          <div class="rune-list">
+            <span class="rune-name">오움 (Ohm)</span>
+            <a href="#" onclick="openRuneLink('Ohm')" class="rune-link">오움 판매 링크</a>
+          </div>
+          <div class="rune-list">
+            <span class="rune-name">벡스 (Vex)</span>
+            <a href="#" onclick="openRuneLink('Vex')" class="rune-link">벡스 판매 링크</a>
+          </div>
+          <div class="rune-list">
+            <span class="rune-name">잔 (Xan)</span>
+            <a href="#" onclick="openRuneLink('Xan')" class="rune-link">잔 판매 링크</a>
+          </div>
+          <div class="rune-list">
+            <span class="rune-name">욤 (Yom)</span>
+            <a href="#" onclick="openRuneLink('Yom')" class="rune-link">욤 판매 링크</a>
+          </div>
+          <div class="rune-list">
+            <span class="rune-name">크라이 (Kry)</span>
+            <a href="#" onclick="openRuneLink('Kry')" class="rune-link">크라이 판매 링크</a>
+          </div>
+          <div class="rune-list">
+            <span class="rune-name">라크 (Lac)</span>
+            <a href="#" onclick="openRuneLink('Lac')" class="rune-link">라크 판매 링크</a>
+          </div>
+          <div class="rune-list">
+            <span class="rune-name">모트 (Mot)</span>
+            <a href="#" onclick="openRuneLink('Mot')" class="rune-link">모트 판매 링크</a>
+          </div>
+          <div class="rune-list">
+            <span class="rune-name">네르 (Ner)</span>
+            <a href="#" onclick="openRuneLink('Ner')" class="rune-link">네르 판매 링크</a>
+          </div>
+          <div class="rune-list">
+            <span class="rune-name">콱스 (Qax)</span>
+            <a href="#" onclick="openRuneLink('Qax')" class="rune-link">콱스 판매 링크</a>
+          </div>
+          <div class="rune-list">
+            <span class="rune-name">쿠아 (Qua)</span>
+            <a href="#" onclick="openRuneLink('Qua')" class="rune-link">쿠아 판매 링크</a>
+          </div>
+          <div class="rune-list">
+            <span class="rune-name">쿠에 (Que)</span>
+            <a href="#" onclick="openRuneLink('Que')" class="rune-link">쿠에 판매 링크</a>
+          </div>
+          <div class="rune-list">
+            <span class="rune-name">주울 (Thul)</span>
+            <a href="#" onclick="openRuneLink('Thul')" class="rune-link">주울 판매 링크</a>
+          </div>
+          <div class="rune-list">
+            <span class="rune-name">치크 (Tzic)</span>
+            <a href="#" onclick="openRuneLink('Tzic')" class="rune-link">치크 판매 링크</a>
+          </div>
+          <div class="rune-list">
+            <span class="rune-name">와트 (Wat)</span>
+            <a href="#" onclick="openRuneLink('Wat')" class="rune-link">와트 판매 링크</a>
+          </div>
+          <div class="rune-list">
+            <span class="rune-name">잘 (Xal)</span>
+            <a href="#" onclick="openRuneLink('Xal')" class="rune-link">잘 판매 링크</a>
+          </div>
+          <div class="rune-list">
+            <span class="rune-name">제크 (Zec)</span>
+            <a href="#" onclick="openRuneLink('Zec')" class="rune-link">제크 판매 링크</a>
+          </div>
+          <div class="rune-list">
+            <span class="rune-name">세흐 (Ceh)</span>
+            <a href="#" onclick="openRuneLink('Ceh')" class="rune-link">세흐 판매 링크</a>
+          </div>
+          <div class="rune-list">
+            <span class="rune-name">가르 (Gar)</span>
+            <a href="#" onclick="openRuneLink('Gar')" class="rune-link">가르 판매 링크</a>
+          </div>
+          <div class="rune-list">
+            <span class="rune-name">룸 (Lum)</span>
+            <a href="#" onclick="openRuneLink('Lum')" class="rune-link">룸 판매 링크</a>
+          </div>
+          <div class="rune-list">
+            <span class="rune-name">탈 (Tal)</span>
+            <a href="#" onclick="openRuneLink('Tal')" class="rune-link">탈 판매 링크</a>
+          </div>
+          <div class="rune-list">
+            <span class="rune-name">테브 (Teb)</span>
+            <a href="#" onclick="openRuneLink('Teb')" class="rune-link">테브 판매 링크</a>
+          </div>
+          <div class="rune-list">
+            <span class="rune-name">테크 (Tec)</span>
+            <a href="#" onclick="openRuneLink('Tec')" class="rune-link">테크 판매 링크</a>
+          </div>
+          <div class="rune-list">
+            <span class="rune-name">톤 (Ton)</span>
+            <a href="#" onclick="openRuneLink('Ton')" class="rune-link">톤 판매 링크</a>
+          </div>
+          <div class="rune-list">
+            <span class="rune-name">툰 (Tun)</span>
+            <a href="#" onclick="openRuneLink('Tun')" class="rune-link">툰 판매 링크</a>
+          </div>
+    </div>
+  </div>
+  
+  <!-- 검색 및 필터링 기능을 위한 JavaScript -->
+  <script>
+    // 검색 필터링 함수
+    function filterRunes() {
+      const searchValue = document.getElementById('searchInput').value.toLowerCase();
+      const runeList = document.getElementById('runeList').getElementsByClassName('rune-list');
+      
+      for (let i = 0; i < runeList.length; i++) {
+        const runeName = runeList[i].getElementsByClassName('rune-name')[0].innerText.toLowerCase();
+        if (runeName.indexOf(searchValue) > -1) {
+          runeList[i].style.display = "";
+        } else {
+          runeList[i].style.display = "none";
+        }
+      }
+    }
+  
+    // 링크 열기 함수: 영어 룬 이름을 사용해 URL 생성
+    function openRuneLink(rune) {
+      const url = `https://diablo.trade/listings/items?cursor=1&mode=season%20softcore&rune=${rune}&type=WTB`;
+      window.open(url, '_blank');
+    }
+  </script>
+  
