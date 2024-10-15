@@ -59,4 +59,10 @@ window.addEventListener('DOMContentLoaded', event => {
         });
     });
 
+     // 링크 열기 함수: 영어 룬 이름을 사용해 URL 생성
+     function openRuneLink(rune) {
+        const url = `https://diablo.trade/listings/items?cursor=1&mode=season%20softcore&rune=${rune}&type=WTB`;
+        window.open(url, '_blank');
+      }
+
 });

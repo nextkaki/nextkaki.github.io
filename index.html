@@ -50,6 +50,31 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
     <script src="js/scripts.js"></script>
+
+    <script>
+        // 검색 필터링 함수
+        function filterRunes() {
+          const searchValue = document.getElementById('searchInput').value.toLowerCase();
+          const runeList = document.getElementById('runeList').getElementsByClassName('rune-list');
+          
+          for (let i = 0; i < runeList.length; i++) {
+            const runeName = runeList[i].getElementsByClassName('rune-name')[0].innerText.toLowerCase();
+            if (runeName.indexOf(searchValue) > -1) {
+              runeList[i].style.display = "";
+            } else {
+              runeList[i].style.display = "none";
+            }
+          }
+        }
+      
+        // 링크 열기 함수: 영어 룬 이름을 사용해 URL 생성
+        function openRuneLink(rune) {
+          const url = `https://diablo.trade/listings/items?cursor=1&mode=season%20softcore&rune=${rune}&type=WTB`;
+          window.open(url, '_blank');
+        }
+      </script>
+      
+    
 </body>
 
 </html>
