@@ -10892,3 +10892,10 @@ a {
 a:hover {
   color: #adb5bd; /* 링크 hover 시 색상 */
 }
+
+.offcanvas-body {
+  background-color: #212529; /* 사이드바 배경 어둡게 */
+}
+.offcanvas-title {
+  color: #f8f9fa; /* 제목 텍스트 밝게 */
+}
