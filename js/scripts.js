@@ -39,18 +39,18 @@ window.addEventListener("DOMContentLoaded", (event) => {
     };
 
     // 각 메뉴에 클릭 이벤트 리스너 추가
-    const menuLinks = document.querySelectorAll(".list-group-item");
-    menuLinks.forEach((link) => {
-        link.addEventListener("click", function (event) {
-            event.preventDefault(); // 기본 링크 동작 방지
+    // const menuLinks = document.querySelectorAll(".list-group-item");
+    // menuLinks.forEach((link) => {
+    //     link.addEventListener("click", function (event) {
+    //         event.preventDefault(); // 기본 링크 동작 방지
 
-            // onclick에 정의된 내용에서 페이지 이름 추출
-            const page = this.getAttribute("onclick").replace("loadPage('", "").replace("')", "");
-            if (page && page !== "#") {
-                loadPage(page); // 페이지가 명시되어 있으면 해당 페이지 로드
-            }
-        });
-    });
+    //         // onclick에 정의된 내용에서 페이지 이름 추출
+    //         const page = this.getAttribute("onclick").replace("loadPage('", "").replace("')", "");
+    //         if (page && page !== "#") {
+    //             loadPage(page); // 페이지가 명시되어 있으면 해당 페이지 로드
+    //         }
+    //     });
+    // });
 
     // 링크 열기 함수: 영어 룬 이름을 사용해 URL 생성
     function openRuneLink(rune) {
