@@ -1,0 +1,216 @@
+<div class="container">
+    <h1>토치라이트 인피니트 MP/HP 봉인 계산기</h1>
+    
+    <div class="global-settings">
+        <h2>전역 설정</h2>
+        <div class="form-group">
+            <label for="global-bonus">전역 MP 봉인 보상률 (%)</label>
+            <input type="number" id="global-bonus" value="0" step="1">
+        </div>
+    </div>
+
+    <div class="skills-container">
+        <div class="skill-card" id="skill1">
+            <h3>스킬 1</h3>
+            <div class="form-group">
+                <label for="skill1-name">스킬 이름</label>
+                <input type="text" id="skill1-name" placeholder="스킬 이름 입력">
+            </div>
+            <div class="form-group">
+                <label for="skill1-seal">MP 봉인율 (%)</label>
+                <select id="skill1-seal">
+                    <option value="0">선택하세요</option>
+                    <option value="10">10%</option>
+                    <option value="15">15%</option>
+                    <option value="20">20%</option>
+                    <option value="25">25%</option>
+                    <option value="30">30%</option>
+                    <option value="35">35%</option>
+                    <option value="40">40%</option>
+                    <option value="45">45%</option>
+                    <option value="50">50%</option>
+                    <option value="custom">직접 입력</option>
+                </select>
+                <input type="number" id="skill1-seal-custom" class="custom-input" placeholder="직접 입력" min="0" max="100" step="0.1" style="display: none;">
+            </div>
+            <div class="form-group">
+                <label for="skill1-bonus">개별 MP 봉인 보상률 (%)</label>
+                <input type="number" id="skill1-bonus" value="0" step="1">
+            </div>
+            <div class="form-group checkbox-group">
+                <input type="checkbox" id="skill1-hp">
+                <label for="skill1-hp">HP 봉인 사용</label>
+            </div>
+            <div class="form-group hp-modifier" id="skill1-hp-modifier-group" style="display: none;">
+                <label for="skill1-hp-modifier">HP 봉인 보정 계수 (%)</label>
+                <input type="number" id="skill1-hp-modifier" value="-65" step="1">
+                <span class="tooltip">음수(-)는 봉인량 증가, 양수(+)는 봉인량 감소</span>
+            </div>
+        </div>
+
+        <div class="skill-card" id="skill2">
+            <h3>스킬 2</h3>
+            <div class="form-group">
+                <label for="skill2-name">스킬 이름</label>
+                <input type="text" id="skill2-name" placeholder="스킬 이름 입력">
+            </div>
+            <div class="form-group">
+                <label for="skill2-seal">MP 봉인율 (%)</label>
+                <select id="skill2-seal">
+                    <option value="0">선택하세요</option>
+                    <option value="10">10%</option>
+                    <option value="15">15%</option>
+                    <option value="20">20%</option>
+                    <option value="25">25%</option>
+                    <option value="30">30%</option>
+                    <option value="35">35%</option>
+                    <option value="40">40%</option>
+                    <option value="45">45%</option>
+                    <option value="50">50%</option>
+                    <option value="custom">직접 입력</option>
+                </select>
+                <input type="number" id="skill2-seal-custom" class="custom-input" placeholder="직접 입력" min="0" max="100" step="0.1" style="display: none;">
+            </div>
+            <div class="form-group">
+                <label for="skill2-bonus">개별 MP 봉인 보상률 (%)</label>
+                <input type="number" id="skill2-bonus" value="0" step="1">
+            </div>
+            <div class="form-group checkbox-group">
+                <input type="checkbox" id="skill2-hp">
+                <label for="skill2-hp">HP 봉인 사용</label>
+            </div>
+            <div class="form-group hp-modifier" id="skill2-hp-modifier-group" style="display: none;">
+                <label for="skill2-hp-modifier">HP 봉인 보정 계수 (%)</label>
+                <input type="number" id="skill2-hp-modifier" value="-65" step="1">
+                <span class="tooltip">음수(-)는 봉인량 증가, 양수(+)는 봉인량 감소</span>
+            </div>
+        </div>
+
+        <div class="skill-card" id="skill3">
+            <h3>스킬 3</h3>
+            <div class="form-group">
+                <label for="skill3-name">스킬 이름</label>
+                <input type="text" id="skill3-name" placeholder="스킬 이름 입력">
+            </div>
+            <div class="form-group">
+                <label for="skill3-seal">MP 봉인율 (%)</label>
+                <select id="skill3-seal">
+                    <option value="0">선택하세요</option>
+                    <option value="10">10%</option>
+                    <option value="15">15%</option>
+                    <option value="20">20%</option>
+                    <option value="25">25%</option>
+                    <option value="30">30%</option>
+                    <option value="35">35%</option>
+                    <option value="40">40%</option>
+                    <option value="45">45%</option>
+                    <option value="50">50%</option>
+                    <option value="custom">직접 입력</option>
+                </select>
+                <input type="number" id="skill3-seal-custom" class="custom-input" placeholder="직접 입력" min="0" max="100" step="0.1" style="display: none;">
+            </div>
+            <div class="form-group">
+                <label for="skill3-bonus">개별 MP 봉인 보상률 (%)</label>
+                <input type="number" id="skill3-bonus" value="0" step="1">
+            </div>
+            <div class="form-group checkbox-group">
+                <input type="checkbox" id="skill3-hp">
+                <label for="skill3-hp">HP 봉인 사용</label>
+            </div>
+            <div class="form-group hp-modifier" id="skill3-hp-modifier-group" style="display: none;">
+                <label for="skill3-hp-modifier">HP 봉인 보정 계수 (%)</label>
+                <input type="number" id="skill3-hp-modifier" value="-65" step="1">
+                <span class="tooltip">음수(-)는 봉인량 증가, 양수(+)는 봉인량 감소</span>
+            </div>
+        </div>
+
+        <div class="skill-card" id="skill4">
+            <h3>스킬 4</h3>
+            <div class="form-group">
+                <label for="skill4-name">스킬 이름</label>
+                <input type="text" id="skill4-name" placeholder="스킬 이름 입력">
+            </div>
+            <div class="form-group">
+                <label for="skill4-seal">MP 봉인율 (%)</label>
+                <select id="skill4-seal">
+                    <option value="0">선택하세요</option>
+                    <option value="10">10%</option>
+                    <option value="15">15%</option>
+                    <option value="20">20%</option>
+                    <option value="25">25%</option>
+                    <option value="30">30%</option>
+                    <option value="35">35%</option>
+                    <option value="40">40%</option>
+                    <option value="45">45%</option>
+                    <option value="50">50%</option>
+                    <option value="custom">직접 입력</option>
+                </select>
+                <input type="number" id="skill4-seal-custom" class="custom-input" placeholder="직접 입력" min="0" max="100" step="0.1" style="display: none;">
+            </div>
+            <div class="form-group">
+                <label for="skill4-bonus">개별 MP 봉인 보상률 (%)</label>
+                <input type="number" id="skill4-bonus" value="0" step="1">
+            </div>
+            <div class="form-group checkbox-group">
+                <input type="checkbox" id="skill4-hp">
+                <label for="skill4-hp">HP 봉인 사용</label>
+            </div>
+            <div class="form-group hp-modifier" id="skill4-hp-modifier-group" style="display: none;">
+                <label for="skill4-hp-modifier">HP 봉인 보정 계수 (%)</label>
+                <input type="number" id="skill4-hp-modifier" value="-65" step="1">
+                <span class="tooltip">음수(-)는 봉인량 증가, 양수(+)는 봉인량 감소</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="action-buttons">
+        <button id="calculate-btn">계산하기</button>
+        <button id="reset-btn">초기화</button>
+    </div>
+
+    <div class="results" id="results">
+        <h2>계산 결과</h2>
+        <div class="result-container">
+            <!-- MP 봉인 결과 -->
+            <div class="result-item">
+                <h3>각 스킬별 MP 봉인량</h3>
+                <div id="skill-results"></div>
+            </div>
+            <div class="result-item">
+                <h3>총 MP 봉인량</h3>
+                <div id="total-seal" class="result-value">0%</div>
+            </div>
+            <div class="result-item">
+                <h3>남은 MP 비율</h3>
+                <div id="remaining-mp" class="result-value">100%</div>
+            </div>
+            
+            <!-- HP 봉인 결과 -->
+            <div class="result-item" id="hp-results-container" style="display: none;">
+                <h3>각 스킬별 HP 봉인량</h3>
+                <div id="hp-seal-results"></div>
+            </div>
+            <div class="result-item" id="hp-total-container" style="display: none;">
+                <h3>총 HP 봉인량</h3>
+                <div id="total-hp-seal" class="result-value">0%</div>
+            </div>
+            <div class="result-item" id="hp-remaining-container" style="display: none;">
+                <h3>남은 HP 비율</h3>
+                <div id="remaining-hp" class="result-value">100%</div>
+            </div>
+            
+            <!-- 활성화 가능 여부 -->
+            <div class="result-item">
+                <h3>스킬 활성화 가능 여부</h3>
+                <div id="activation-status" class="result-value">모든 스킬 활성화 가능</div>
+            </div>
+        </div>
+        
+        <div class="calculation-info">
+            <h3>계산 방식 안내</h3>
+            <p>봉인량 = 기본 봉인율 ÷ [(1 + 봉인보상증가) × (1 + 봉인보상추가)]</p>
+            <p>- 봉인보상증가: 전역 MP 봉인 보상률 + 개별 MP 봉인 보상률</p>
+            <p>- 봉인보상추가: HP 봉인 보정 계수 (음수는 봉인량 증가, 양수는 봉인량 감소)</p>
+        </div>
+    </div>
+</div>

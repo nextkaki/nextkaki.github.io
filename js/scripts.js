@@ -25,24 +25,9 @@ window.addEventListener("DOMContentLoaded", (event) => {
         });
     }
 
-    // 메뉴 클릭 시 페이지를 동적으로 로드하는 함수
-    window.loadPage = function (page) {
-        // 전역 함수로 설정
-        fetch("pages/" + page)
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error("Page not found");
-                }
-                return response.text();
-            })
-            .then((data) => {
-                document.getElementById("page-content").innerHTML = data;
-            })
-            .catch((error) => {
-                console.error("Error loading page:", error);
-                document.getElementById("page-content").innerHTML = "<h1>Page not found</h1>";
-            });
-    };
+  
+
+    
 
     // 하위 메뉴 토글 함수
     window.toggleSubMenu = function (submenuId) {
@@ -73,3 +58,4 @@ window.addEventListener("DOMContentLoaded", (event) => {
         window.open(url, "_blank");
     }
 });
+
