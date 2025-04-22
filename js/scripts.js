@@ -6,13 +6,12 @@
 //
 // Scripts
 //
-document.addEventListener('DOMContentLoaded', function () {
-    var offcanvasElementList = [].slice.call(document.querySelectorAll('.offcanvas'));
+document.addEventListener("DOMContentLoaded", function () {
+    var offcanvasElementList = [].slice.call(document.querySelectorAll(".offcanvas"));
     var offcanvasList = offcanvasElementList.map(function (offcanvasEl) {
         return new bootstrap.Offcanvas(offcanvasEl);
     });
 });
-
 
 window.addEventListener("DOMContentLoaded", (event) => {
     // Toggle the side navigation
@@ -24,10 +23,6 @@ window.addEventListener("DOMContentLoaded", (event) => {
             localStorage.setItem("sb|sidebar-toggle", document.body.classList.contains("sb-sidenav-toggled"));
         });
     }
-
-  
-
-    
 
     // 하위 메뉴 토글 함수
     window.toggleSubMenu = function (submenuId) {
@@ -58,4 +53,3 @@ window.addEventListener("DOMContentLoaded", (event) => {
         window.open(url, "_blank");
     }
 });
-

@@ -20,6 +20,13 @@
   <link id="page-style" rel="stylesheet" href="">
 </head>
 
+<style>
+  .btn-close {
+  color: #fff;
+  filter: brightness(0) invert(1);
+  }
+</style>
+
 <body>
   <!-- 모바일용 햄버거 메뉴 버튼 -->
   <nav class="navbar navbar-dark bg-dark">
@@ -40,12 +47,20 @@
 
         <a class="list-group-item list-group-item-action p-3" href="#" onclick="toggleSubMenu('submenu-dia')">디아블로4</a>
         <ul class="list-group list-group-flush collapse" id="submenu-dia">
-          <li class="list-group-item p-3"><a href="#" onclick="loadPage('dia_sell_rune.html')">룬 시세 검색</a></li>
+          <li class="list-group-item p-3">
+            <a href="#" onclick="loadPage('dia_sell_rune.html')" data-bs-dismiss="offcanvas">
+              룬 시세 검색
+            </a>
+          </li>
         </ul>
 
         <a class="list-group-item list-group-item-action p-3" href="#" onclick="toggleSubMenu('submenu-torch')">토치라이트</a>
         <ul class="list-group list-group-flush collapse" id="submenu-torch">
-          <li class="list-group-item p-3"><a href="#" onclick="loadPage('torch_mana.html')">MP 봉인 계산</a></li>
+          <li class="list-group-item p-3">
+            <a href="#" onclick="loadPage('torch_mana.html')" data-bs-dismiss="offcanvas">
+              MP 봉인 계산
+            </a>
+          </li>
         </ul>
 
         <a class="list-group-item list-group-item-action p-3" href="#" onclick="loadPage('pass_over.html')">패스 오브 엑자일</a>
@@ -126,7 +141,7 @@
       const calculateBtn = document.getElementById('calculate-btn');
       if (!calculateBtn) return; // 없으면 실행 안 해!
       // 요소 참조 가져오기
-      
+
       const resetBtn = document.getElementById('reset-btn');
       const skillResults = document.getElementById('skill-results');
       const totalSeal = document.getElementById('total-seal');
@@ -135,269 +150,417 @@
       const hpSealResults = document.getElementById('hp-seal-results');
       const totalHpSeal = document.getElementById('total-hp-seal');
       const remainingHp = document.getElementById('remaining-hp');
-
+      const pathfinderEnabled = document.getElementById('pathfinder-enabled');
+    
       // 직접 입력 옵션 처리
       for (let i = 1; i <= 4; i++) {
-        const select = document.getElementById(`skill${i}-seal`);
-        const customInput = document.getElementById(`skill${i}-seal-custom`);
-
-        select.addEventListener('change', function () {
-          if (this.value === 'custom') {
-            customInput.style.display = 'block';
-            customInput.focus();
-          } else {
-            customInput.style.display = 'none';
-          }
-        });
+          const select = document.getElementById(`skill${i}-seal`);
+          const customInput = document.getElementById(`skill${i}-seal-custom`);
+          
+          select.addEventListener('change', function() {
+              if (this.value === 'custom') {
+                  customInput.style.display = 'block';
+                  customInput.focus();
+              } else {
+                  customInput.style.display = 'none';
+              }
+          });
       }
-
+    
       // HP 봉인 체크박스 처리
       for (let i = 1; i <= 4; i++) {
-        const hpCheckbox = document.getElementById(`skill${i}-hp`);
-        const hpModifierGroup = document.getElementById(`skill${i}-hp-modifier-group`);
-
-        hpCheckbox.addEventListener('change', function () {
-          hpModifierGroup.style.display = this.checked ? 'block' : 'none';
-        });
+          const hpCheckbox = document.getElementById(`skill${i}-hp`);
+          const hpModifierGroup = document.getElementById(`skill${i}-hp-modifier-group`);
+          
+          hpCheckbox.addEventListener('change', function() {
+              hpModifierGroup.style.display = this.checked ? 'block' : 'none';
+          });
       }
-
+    
+      // 개척자의 길 체크박스 처리
+      pathfinderEnabled.addEventListener('change', function() {
+          const auxiliaryContainers = document.querySelectorAll('.auxiliary-skills');
+          
+          if (this.checked) {
+              // 개척자의 길 활성화 시 보조 스킬 입력 비활성화
+              auxiliaryContainers.forEach(container => {
+                  container.classList.add('pathfinder-disabled');
+              });
+          } else {
+              // 개척자의 길 비활성화 시 보조 스킬 입력 활성화
+              auxiliaryContainers.forEach(container => {
+                  container.classList.remove('pathfinder-disabled');
+              });
+          }
+      });
+    
+      // 보조 스킬 추가 버튼 처리
+      for (let i = 1; i <= 4; i++) {
+          const addAuxiliaryBtn = document.getElementById(`skill${i}-add-auxiliary`);
+          const auxiliaryList = document.getElementById(`skill${i}-auxiliary-list`);
+          
+          addAuxiliaryBtn.addEventListener('click', function() {
+              addAuxiliarySkill(auxiliaryList, i);
+          });
+          
+          // 초기 보조 스킬 하나 추가
+          addAuxiliarySkill(auxiliaryList, i);
+      }
+      
+      // 보조 스킬 항목 추가 함수
+      function addAuxiliarySkill(container, skillIndex) {
+          const auxiliaryItem = document.createElement('div');
+          auxiliaryItem.className = 'auxiliary-item';
+          
+          const auxiliaryInput = document.createElement('input');
+          auxiliaryInput.type = 'number';
+          auxiliaryInput.className = `skill${skillIndex}-auxiliary`;
+          auxiliaryInput.value = '100';
+          auxiliaryInput.min = '0';
+          auxiliaryInput.max = '200';
+          auxiliaryInput.step = '5';
+          auxiliaryInput.placeholder = 'MP 배율 (%)';
+          
+          const removeBtn = document.createElement('button');
+          removeBtn.className = 'remove-auxiliary-btn';
+          removeBtn.textContent = '삭제';
+          removeBtn.addEventListener('click', function() {
+              container.removeChild(auxiliaryItem);
+          });
+          
+          auxiliaryItem.appendChild(auxiliaryInput);
+          auxiliaryItem.appendChild(removeBtn);
+          container.appendChild(auxiliaryItem);
+      }
+    
       // 계산 버튼 클릭 이벤트
       calculateBtn.addEventListener('click', calculateMpSeal);
-
+      
       // 초기화 버튼 클릭 이벤트
       resetBtn.addEventListener('click', resetCalculator);
-
+      
       // MP 봉인 계산 함수
       function calculateMpSeal() {
-        // 전역 MP 봉인 보상률
-        const globalBonus = parseFloat(document.getElementById('global-bonus').value) || 0;
-
-        // 각 스킬별 계산 결과 저장 배열
-        const skillSealResults = [];
-        const hpSealResultsArray = [];
-
-        // 총 MP 봉인량과 HP 봉인량
-        let totalMpSeal = 0;
-        let totalHpSealValue = 0;
-
-        // 활성화된 스킬 수와 HP 봉인 스킬 수
-        let activeSkillCount = 0;
-        let hpSealSkillCount = 0;
-
-        // 각 스킬별 계산
-        for (let i = 1; i <= 4; i++) {
-          const skillName = document.getElementById(`skill${i}-name`).value || `스킬 ${i}`;
-
-          // MP 봉인율 가져오기 (드롭다운 또는 직접 입력)
-          let sealRate;
-          const sealSelect = document.getElementById(`skill${i}-seal`);
-          if (sealSelect.value === 'custom') {
-            sealRate = parseFloat(document.getElementById(`skill${i}-seal-custom`).value) || 0;
-          } else {
-            sealRate = parseFloat(sealSelect.value) || 0;
+          // 전역 MP 봉인 보상률
+          const globalBonus = parseFloat(document.getElementById('global-bonus').value) || 0;
+          
+          // 개척자의 길 사용 여부
+          const isPathfinderEnabled = document.getElementById('pathfinder-enabled').checked;
+          
+          // 각 스킬별 계산 결과 저장 배열
+          const skillSealResults = [];
+          const hpSealResultsArray = [];
+          
+          // 총 MP 봉인량과 HP 봉인량
+          let totalMpSeal = 0;
+          let totalHpSealValue = 0;
+          
+          // 활성화된 스킬 수와 HP 봉인 스킬 수
+          let activeSkillCount = 0;
+          let hpSealSkillCount = 0;
+          
+          // 각 스킬별 계산
+          for (let i = 1; i <= 4; i++) {
+              const skillName = document.getElementById(`skill${i}-name`).value || `스킬 ${i}`;
+              
+              // MP 봉인율 가져오기 (드롭다운 또는 직접 입력)
+              let sealRate;
+              const sealSelect = document.getElementById(`skill${i}-seal`);
+              if (sealSelect.value === 'custom') {
+                  sealRate = parseFloat(document.getElementById(`skill${i}-seal-custom`).value) || 0;
+              } else {
+                  sealRate = parseFloat(sealSelect.value) || 0;
+              }
+              
+              // 스킬이 활성화되었는지 확인 (MP 봉인율이 0보다 큰 경우)
+              if (sealRate > 0) {
+                  activeSkillCount++;
+                  
+                  // 개별 MP 봉인 보상률
+                  const individualBonus = parseFloat(document.getElementById(`skill${i}-bonus`).value) || 0;
+                  
+                  // 최종 적용 보상률 계산 (전역 + 개별)
+                  const bonusIncrease = (globalBonus + individualBonus) / 100;
+                  
+                  // 보조 스킬 MP 배율 계산
+                  let auxiliaryMultiplier = 1.0;
+                  
+                  if (isPathfinderEnabled) {
+                      // 개척자의 길 사용 시 모든 보조 스킬 배율은 0.95로 고정
+                      // 보조 스킬 개수만큼 0.95를 곱함
+                      const auxiliaryInputs = document.querySelectorAll(`.skill${i}-auxiliary`);
+                      if (auxiliaryInputs.length > 0) {
+                          auxiliaryMultiplier = Math.pow(0.95, auxiliaryInputs.length);
+                      }
+                  } else {
+                      // 일반적인 경우 각 보조 스킬 배율을 곱함
+                      const auxiliaryInputs = document.querySelectorAll(`.skill${i}-auxiliary`);
+                      auxiliaryInputs.forEach(input => {
+                          const multiplier = parseFloat(input.value) / 100 || 1.0;
+                          auxiliaryMultiplier *= multiplier;
+                      });
+                  }
+                  
+                  // HP 봉인 적용 여부 확인
+                  const isHpSeal = document.getElementById(`skill${i}-hp`).checked;
+                  let hpBonusRate = 0;
+                  
+                  if (isHpSeal) {
+                      hpSealSkillCount++;
+                      // HP 봉인 보정 계수 적용
+                      hpBonusRate = parseFloat(document.getElementById(`skill${i}-hp-modifier`).value) || -65;
+                      hpBonusRate = hpBonusRate / 100; // 백분율을 소수로 변환
+                  }
+                  
+                  // 수정된 계산 방식 적용 (새로운 공식)
+                  // 최종 봉인율 = (기본 봉인 × 보조 MP 배율 누적) ÷ (1 + MP 봉인 보상 합산) ÷ (1 - MP 봉인 보상 추가율)
+                  const baseSeal = sealRate / 100;
+                  
+                  // 1. 기준 봉인 계산: 기본 봉인 × 보조 스킬 MP 배율 누적
+                  let baseWithAuxiliary = baseSeal * auxiliaryMultiplier;
+                  
+                  // 2. 봉인 보상 적용 (합산): 기준 봉인 ÷ (1 + 봉인 보상 합산)
+                  let withBonus = baseWithAuxiliary / (1 + bonusIncrease);
+                  
+                  // 3. 봉인 보상 추가 적용 (HP 봉인 패널티)
+                  let finalSealRate;
+                  if (isHpSeal) {
+                      // HP 봉인 보정률이 음수인 경우 (1 - 절대값)으로 나눔
+                      if (hpBonusRate < 0) {
+                          finalSealRate = withBonus / (1 - Math.abs(hpBonusRate));
+                      } else {
+                          // 양수인 경우 (1 + 값)으로 나눔
+                          finalSealRate = withBonus / (1 + hpBonusRate);
+                      }
+                  } else {
+                      finalSealRate = withBonus;
+                  }
+                  
+                  // 백분율로 변환
+                  let skillSeal = finalSealRate * 100;
+                  
+                  // 소수점 3자리까지 계산 (정밀 실수형 계산)
+                  skillSeal = parseFloat(skillSeal.toFixed(3));
+                  
+                  // 봉인률 초과 여부 확인
+                  const isSealExceeded = skillSeal > 100;
+                  
+                  // 결과 저장
+                  if (isHpSeal) {
+                      // HP 봉인인 경우 HP 봉인량에 추가
+                      totalHpSealValue += skillSeal;
+                      
+                      hpSealResultsArray.push({
+                          name: skillName,
+                          sealRate: sealRate,
+                          auxiliaryMultiplier: auxiliaryMultiplier,
+                          bonusIncrease: bonusIncrease * 100,
+                          hpBonusRate: hpBonusRate * 100,
+                          finalSeal: skillSeal,
+                          exceeded: isSealExceeded
+                      });
+                  } else {
+                      // 일반 MP 봉인인 경우 MP 봉인량에 추가
+                      totalMpSeal += skillSeal;
+                  }
+                  
+                  // 모든 스킬 결과 저장 (MP 봉인량 표시용)
+                  skillSealResults.push({
+                      name: skillName,
+                      sealRate: sealRate,
+                      auxiliaryMultiplier: auxiliaryMultiplier,
+                      bonusIncrease: bonusIncrease * 100,
+                      hpBonusRate: isHpSeal ? hpBonusRate * 100 : null,
+                      isHpSeal: isHpSeal,
+                      finalSeal: skillSeal,
+                      exceeded: isSealExceeded
+                  });
+              }
           }
-
-          // 스킬이 활성화되었는지 확인 (MP 봉인율이 0보다 큰 경우)
-          if (sealRate > 0) {
-            activeSkillCount++;
-
-            // 개별 MP 봉인 보상률
-            const individualBonus = parseFloat(document.getElementById(`skill${i}-bonus`).value) || 0;
-
-            // 최종 적용 보상률 계산 (전역 + 개별)
-            const bonusIncrease = (globalBonus + individualBonus) / 100;
-
-            // HP 봉인 적용 여부 확인
-            const isHpSeal = document.getElementById(`skill${i}-hp`).checked;
-            let bonusAdditional = 0;
-
-            if (isHpSeal) {
-              hpSealSkillCount++;
-              // HP 봉인 보정 계수 적용
-              bonusAdditional = parseFloat(document.getElementById(`skill${i}-hp-modifier`).value) || -65;
-              bonusAdditional = bonusAdditional / 100; // 백분율을 소수로 변환
-            }
-
-            // 새로운 계산 방식 적용
-            // 봉인량 ÷ [(1 + 봉인보상증가) × (1 + 봉인보상추가)]
-            const denominator = (1 + bonusIncrease) * (1 + bonusAdditional);
-            let skillSeal = sealRate / denominator;
-
-            // 소수점 3자리까지 계산 (정밀 실수형 계산)
-            skillSeal = parseFloat(skillSeal.toFixed(3));
-
-            // 결과 저장
-            if (isHpSeal) {
-              // HP 봉인인 경우 HP 봉인량에 추가
-              totalHpSealValue += skillSeal;
-
-              hpSealResultsArray.push({
-                name: skillName,
-                sealRate: sealRate,
-                bonusIncrease: bonusIncrease * 100,
-                bonusAdditional: bonusAdditional * 100,
-                finalSeal: skillSeal
-              });
-            } else {
-              // 일반 MP 봉인인 경우 MP 봉인량에 추가
-              totalMpSeal += skillSeal;
-            }
-
-            // 모든 스킬 결과 저장 (MP 봉인량 표시용)
-            skillSealResults.push({
-              name: skillName,
-              sealRate: sealRate,
-              bonusIncrease: bonusIncrease * 100,
-              bonusAdditional: isHpSeal ? bonusAdditional * 100 : null,
-              isHpSeal: isHpSeal,
-              finalSeal: skillSeal
-            });
-          }
-        }
-
+        
         // 소수점 1자리까지 반올림
         totalMpSeal = parseFloat(totalMpSeal.toFixed(1));
         totalHpSealValue = parseFloat(totalHpSealValue.toFixed(1));
-
+        
         // 남은 MP 비율 계산
         const remainingMpPercent = Math.max(0, 100 - totalMpSeal);
-
+        
         // 남은 HP 비율 계산 (HP 봉인이 있는 경우)
         const remainingHpPercent = Math.max(0, 100 - totalHpSealValue);
-
+        
+        // 봉인률 초과 스킬 확인
+        const hasExceededSkills = skillSealResults.some(skill => skill.exceeded);
+        
         // 모든 스킬 활성화 가능 여부 확인 (MP와 HP가 0 이상 남아있어야 함)
-        const isActivationPossible = remainingMpPercent > 0 && (hpSealSkillCount === 0 || remainingHpPercent > 0);
-
+        const isActivationPossible = remainingMpPercent > 0 && 
+                                    (hpSealSkillCount === 0 || remainingHpPercent > 0) &&
+                                    !hasExceededSkills;
+        
         // 결과 표시
         displayResults(
-          skillSealResults,
-          hpSealResultsArray,
-          totalMpSeal,
-          totalHpSealValue,
-          remainingMpPercent,
-          remainingHpPercent,
-          isActivationPossible,
-          activeSkillCount,
-          hpSealSkillCount
+            skillSealResults, 
+            hpSealResultsArray,
+            totalMpSeal, 
+            totalHpSealValue,
+            remainingMpPercent, 
+            remainingHpPercent,
+            isActivationPossible, 
+            activeCount = activeSkillCount,
+            hpSkillCount = hpSealSkillCount,
+            hasExceededSkills
         );
       }
-
+    
       // 결과 표시 함수
       function displayResults(
-        mpSkillResults,
-        hpSkillResults,
-        totalMp,
-        totalHp,
-        remainingMpValue,
-        remainingHpValue,
-        isPossible,
-        activeCount,
-        hpSkillCount
+          mpSkillResults, 
+          hpSkillResults, 
+          totalMp, 
+          totalHp, 
+          remainingMpValue, 
+          remainingHpValue, 
+          isPossible, 
+          activeCount,
+          hpSkillCount,
+          hasExceededSkills
       ) {
-        // 각 스킬별 MP 봉인량 결과 표시
-        let mpSkillResultsHTML = '';
-
-        if (activeCount === 0) {
-          mpSkillResultsHTML = '<p>활성화된 스킬이 없습니다.</p>';
-        } else {
-          mpSkillResults.forEach(skill => {
-            let resultText = `
-                    <div class="skill-result-item">
-                        <span>${skill.name}</span>
-                        <span>${skill.finalSeal.toFixed(1)}%</span>
-                    </div>
-                `;
-            mpSkillResultsHTML += resultText;
-          });
-        }
-
-        skillResults.innerHTML = mpSkillResultsHTML;
-
-        // HP 봉인 결과 표시 (HP 봉인이 있는 경우)
-        let hpSkillResultsHTML = '';
-
-        if (hpSkillCount === 0) {
-          hpSkillResultsHTML = '<p>HP 봉인 스킬이 없습니다.</p>';
-          document.getElementById('hp-results-container').style.display = 'none';
-        } else {
-          hpSkillResults.forEach(skill => {
-            let resultText = `
-                    <div class="skill-result-item">
-                        <span>${skill.name}</span>
-                        <span>${skill.finalSeal.toFixed(1)}%</span>
-                    </div>
-                `;
-            hpSkillResultsHTML += resultText;
-          });
-          document.getElementById('hp-results-container').style.display = 'block';
-        }
-
-        hpSealResults.innerHTML = hpSkillResultsHTML;
-
-        // 총 MP 봉인량 표시
-        totalSeal.textContent = `${totalMp}%`;
-
-        // 총 HP 봉인량 표시 (HP 봉인이 있는 경우)
-        if (hpSkillCount > 0) {
-          totalHpSeal.textContent = `${totalHp}%`;
-          document.getElementById('hp-total-container').style.display = 'block';
-        } else {
-          document.getElementById('hp-total-container').style.display = 'none';
-        }
-
-        // 남은 MP 비율 표시
-        remainingMp.textContent = `${remainingMpValue.toFixed(1)}%`;
-
-        // 남은 HP 비율 표시 (HP 봉인이 있는 경우)
-        if (hpSkillCount > 0) {
-          remainingHp.textContent = `${remainingHpValue.toFixed(1)}%`;
-          document.getElementById('hp-remaining-container').style.display = 'block';
-        } else {
-          document.getElementById('hp-remaining-container').style.display = 'none';
-        }
-
-        // 활성화 가능 여부 표시
-        if (activeCount === 0) {
-          activationStatus.textContent = '활성화된 스킬 없음';
-          activationStatus.className = 'result-value';
-        } else {
-          activationStatus.textContent = isPossible ? '모든 스킬 활성화 가능' : '스킬 활성화 불가능 (자원 부족)';
-          activationStatus.className = isPossible ? 'result-value possible' : 'result-value impossible';
-        }
+          // 각 스킬별 MP 봉인량 결과 표시
+          let mpSkillResultsHTML = '';
+          
+          if (activeCount === 0) {
+              mpSkillResultsHTML = '<p>활성화된 스킬이 없습니다.</p>';
+          } else {
+              mpSkillResults.forEach(skill => {
+                  const warningClass = skill.exceeded ? 'seal-warning' : '';
+                  let resultText = `
+                      <div class="skill-result-item ${warningClass}">
+                          <span>${skill.name}</span>
+                          <span>${skill.finalSeal.toFixed(1)}%</span>
+                      </div>
+                  `;
+                  mpSkillResultsHTML += resultText;
+              });
+          }
+          
+          skillResults.innerHTML = mpSkillResultsHTML;
+          
+          // HP 봉인 결과 표시 (HP 봉인이 있는 경우)
+          let hpSkillResultsHTML = '';
+          
+          if (hpSkillCount === 0) {
+              hpSkillResultsHTML = '<p>HP 봉인 스킬이 없습니다.</p>';
+              document.getElementById('hp-results-container').style.display = 'none';
+          } else {
+              hpSkillResults.forEach(skill => {
+                  const warningClass = skill.exceeded ? 'seal-warning' : '';
+                  let resultText = `
+                      <div class="skill-result-item ${warningClass}">
+                          <span>${skill.name}</span>
+                          <span>${skill.finalSeal.toFixed(1)}%</span>
+                      </div>
+                  `;
+                  hpSkillResultsHTML += resultText;
+              });
+              document.getElementById('hp-results-container').style.display = 'block';
+          }
+          
+          hpSealResults.innerHTML = hpSkillResultsHTML;
+          
+          // 총 MP 봉인량 표시
+          totalSeal.textContent = `${totalMp}%`;
+          
+          // 총 HP 봉인량 표시 (HP 봉인이 있는 경우)
+          if (hpSkillCount > 0) {
+              totalHpSeal.textContent = `${totalHp}%`;
+              document.getElementById('hp-total-container').style.display = 'block';
+          } else {
+              document.getElementById('hp-total-container').style.display = 'none';
+          }
+          
+          // 남은 MP 비율 표시
+          remainingMp.textContent = `${remainingMpValue.toFixed(1)}%`;
+          
+          // 남은 HP 비율 표시 (HP 봉인이 있는 경우)
+          if (hpSkillCount > 0) {
+              remainingHp.textContent = `${remainingHpValue.toFixed(1)}%`;
+              document.getElementById('hp-remaining-container').style.display = 'block';
+          } else {
+              document.getElementById('hp-remaining-container').style.display = 'none';
+          }
+          
+          // 활성화 가능 여부 표시
+          if (activeCount === 0) {
+              activationStatus.textContent = '활성화된 스킬 없음';
+              activationStatus.className = 'result-value';
+          } else if (hasExceededSkills) {
+              activationStatus.textContent = '스킬 활성화 불가능 (봉인률 초과)';
+              activationStatus.className = 'result-value impossible';
+              
+              // 봉인률 초과 스킬 표시
+              mpSkillResults.forEach((skill, index) => {
+                  if (skill.exceeded) {
+                      const skillCard = document.getElementById(`skill${index + 1}`);
+                      if (skillCard) {
+                          skillCard.classList.add('skill-disabled');
+                      }
+                  }
+              });
+          } else {
+              activationStatus.textContent = isPossible ? '모든 스킬 활성화 가능' : '스킬 활성화 불가능 (자원 부족)';
+              activationStatus.className = isPossible ? 'result-value possible' : 'result-value impossible';
+          }
       }
-
+    
       // 계산기 초기화 함수
       function resetCalculator() {
-        // 전역 설정 초기화
-        document.getElementById('global-bonus').value = 0;
+          // 전역 설정 초기화
+          document.getElementById('global-bonus').value = 0;
+          document.getElementById('pathfinder-enabled').checked = false;
+          
+          // 각 스킬 초기화
+          for (let i = 1; i <= 4; i++) {
+              document.getElementById(`skill${i}-name`).value = '';
+              document.getElementById(`skill${i}-seal`).value = '0';
+              document.getElementById(`skill${i}-seal-custom`).value = '';
+              document.getElementById(`skill${i}-seal-custom`).style.display = 'none';
+              document.getElementById(`skill${i}-bonus`).value = 0;
+              document.getElementById(`skill${i}-hp`).checked = false;
+              document.getElementById(`skill${i}-hp-modifier-group`).style.display = 'none';
+              document.getElementById(`skill${i}-hp-modifier`).value = -65;
+              
+              // 보조 스킬 초기화
+              const auxiliaryList = document.getElementById(`skill${i}-auxiliary-list`);
+              auxiliaryList.innerHTML = '';
+              addAuxiliarySkill(auxiliaryList, i);
+              
+              // 스킬 카드 스타일 초기화
+              const skillCard = document.getElementById(`skill${i}`);
+              skillCard.classList.remove('skill-disabled');
+          }
+          
+          // 보조 스킬 컨테이너 활성화
+          const auxiliaryContainers = document.querySelectorAll('.auxiliary-skills');
+          auxiliaryContainers.forEach(container => {
+              container.classList.remove('pathfinder-disabled');
+          });
+          
+          // 결과 초기화
+          skillResults.innerHTML = '<p>계산 결과가 여기에 표시됩니다.</p>';
+          hpSealResults.innerHTML = '<p>HP 봉인 결과가 여기에 표시됩니다.</p>';
+          totalSeal.textContent = '0%';
+          totalHpSeal.textContent = '0%';
+          remainingMp.textContent = '100%';
+          remainingHp.textContent = '100%';
+          activationStatus.textContent = '활성화된 스킬 없음';
+          activationStatus.className = 'result-value';
+          
+          // HP 관련 컨테이너 숨기기
+          document.getElementById('hp-results-container').style.display = 'none';
+          document.getElementById('hp-total-container').style.display = 'none';
+          document.getElementById('hp-remaining-container').style.display = 'none';
 
-        // 각 스킬 초기화
-        for (let i = 1; i <= 4; i++) {
-          document.getElementById(`skill${i}-name`).value = '';
-          document.getElementById(`skill${i}-seal`).value = '0';
-          document.getElementById(`skill${i}-seal-custom`).value = '';
-          document.getElementById(`skill${i}-seal-custom`).style.display = 'none';
-          document.getElementById(`skill${i}-bonus`).value = 0;
-          document.getElementById(`skill${i}-hp`).checked = false;
-          document.getElementById(`skill${i}-hp-modifier-group`).style.display = 'none';
-          document.getElementById(`skill${i}-hp-modifier`).value = -65;
-        }
-
-        // 결과 초기화
-        skillResults.innerHTML = '<p>계산 결과가 여기에 표시됩니다.</p>';
-        hpSealResults.innerHTML = '<p>HP 봉인 결과가 여기에 표시됩니다.</p>';
-        totalSeal.textContent = '0%';
-        totalHpSeal.textContent = '0%';
-        remainingMp.textContent = '100%';
-        remainingHp.textContent = '100%';
-        activationStatus.textContent = '활성화된 스킬 없음';
-        activationStatus.className = 'result-value';
-
-        // HP 관련 컨테이너 숨기기
-        document.getElementById('hp-results-container').style.display = 'none';
-        document.getElementById('hp-total-container').style.display = 'none';
-        document.getElementById('hp-remaining-container').style.display = 'none';
       }
+    
     };
 
   </script>

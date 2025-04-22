@@ -7,6 +7,12 @@
             <label for="global-bonus">전역 MP 봉인 보상률 (%)</label>
             <input type="number" id="global-bonus" value="0" step="1">
         </div>
+        <div class="form-group checkbox-group">
+            <input type="checkbox" id="pathfinder-enabled">
+            <label for="pathfinder-enabled">개척자의 길 사용</label>
+            <span class="custom-tooltip">개척자의 길 사용 시 모든 보조 스킬의 MP 배율이 0.95로 고정됩니다.</span>
+
+        </div>
     </div>
 
     <div class="skills-container">
@@ -36,6 +42,13 @@
             <div class="form-group">
                 <label for="skill1-bonus">개별 MP 봉인 보상률 (%)</label>
                 <input type="number" id="skill1-bonus" value="0" step="1">
+            </div>
+            <div class="form-group auxiliary-skills" id="skill1-auxiliary-container">
+                <label>보조 스킬 MP 배율</label>
+                <div class="auxiliary-list" id="skill1-auxiliary-list">
+                    <!-- 보조 스킬 항목이 여기에 동적으로 추가됩니다 -->
+                </div>
+                <button type="button" class="add-auxiliary-btn" id="skill1-add-auxiliary">+ 보조 스킬 추가</button>
             </div>
             <div class="form-group checkbox-group">
                 <input type="checkbox" id="skill1-hp">
@@ -75,6 +88,13 @@
                 <label for="skill2-bonus">개별 MP 봉인 보상률 (%)</label>
                 <input type="number" id="skill2-bonus" value="0" step="1">
             </div>
+            <div class="form-group auxiliary-skills" id="skill2-auxiliary-container">
+                <label>보조 스킬 MP 배율</label>
+                <div class="auxiliary-list" id="skill2-auxiliary-list">
+                    <!-- 보조 스킬 항목이 여기에 동적으로 추가됩니다 -->
+                </div>
+                <button type="button" class="add-auxiliary-btn" id="skill2-add-auxiliary">+ 보조 스킬 추가</button>
+            </div>
             <div class="form-group checkbox-group">
                 <input type="checkbox" id="skill2-hp">
                 <label for="skill2-hp">HP 봉인 사용</label>
@@ -113,6 +133,13 @@
                 <label for="skill3-bonus">개별 MP 봉인 보상률 (%)</label>
                 <input type="number" id="skill3-bonus" value="0" step="1">
             </div>
+            <div class="form-group auxiliary-skills" id="skill3-auxiliary-container">
+                <label>보조 스킬 MP 배율</label>
+                <div class="auxiliary-list" id="skill3-auxiliary-list">
+                    <!-- 보조 스킬 항목이 여기에 동적으로 추가됩니다 -->
+                </div>
+                <button type="button" class="add-auxiliary-btn" id="skill3-add-auxiliary">+ 보조 스킬 추가</button>
+            </div>
             <div class="form-group checkbox-group">
                 <input type="checkbox" id="skill3-hp">
                 <label for="skill3-hp">HP 봉인 사용</label>
@@ -150,6 +177,13 @@
             <div class="form-group">
                 <label for="skill4-bonus">개별 MP 봉인 보상률 (%)</label>
                 <input type="number" id="skill4-bonus" value="0" step="1">
+            </div>
+            <div class="form-group auxiliary-skills" id="skill4-auxiliary-container">
+                <label>보조 스킬 MP 배율</label>
+                <div class="auxiliary-list" id="skill4-auxiliary-list">
+                    <!-- 보조 스킬 항목이 여기에 동적으로 추가됩니다 -->
+                </div>
+                <button type="button" class="add-auxiliary-btn" id="skill4-add-auxiliary">+ 보조 스킬 추가</button>
             </div>
             <div class="form-group checkbox-group">
                 <input type="checkbox" id="skill4-hp">
@@ -208,9 +242,20 @@
         
         <div class="calculation-info">
             <h3>계산 방식 안내</h3>
-            <p>봉인량 = 기본 봉인율 ÷ [(1 + 봉인보상증가) × (1 + 봉인보상추가)]</p>
-            <p>- 봉인보상증가: 전역 MP 봉인 보상률 + 개별 MP 봉인 보상률</p>
-            <p>- 봉인보상추가: HP 봉인 보정 계수 (음수는 봉인량 증가, 양수는 봉인량 감소)</p>
+            <p>최종 봉인율 = (기본 봉인 × 보조 MP 배율 누적) ÷ (1 + MP 봉인 보상 합산) ÷ (1 - MP 봉인 보상 추가율)</p>
+            <p><strong>계산 단계:</strong></p>
+            <p>1. 기준 봉인 계산: 기본 봉인 × 보조 스킬 MP 배율 누적</p>
+            <p>2. 봉인 보상 적용: 기준 봉인 ÷ (1 + 봉인 보상 합산)</p>
+            <p>3. 봉인 보상 추가 적용: 보상 반영 ÷ (1 - 봉인 보상 추가율)</p>
+            <p><strong>항목 설명:</strong></p>
+            <p>- 기본 봉인: 스킬 자체 봉인율 (예: 20%)</p>
+            <p>- 보조 MP 배율 누적: 개척자 사용 시 0.95 × 0.95 × 0.95 (보조 스킬 개수만큼)</p>
+            <p>- MP 봉인 보상 합산: 전역 + 개별 MP 봉인 보상률 (분모에 적용)</p>
+            <p>- MP 봉인 보상 추가율: HP 봉인 보정 계수 (음수는 봉인량 증가, 양수는 봉인량 감소)</p>
+            <p>- 음수 보정률(-65%)은 (1 - 0.65) = 0.35로 나누어 계산 (봉인량 증가)</p>
+            <p class="warning-message">
+                ⚠️ <strong>주의:</strong> 본 계산식은 소수점 계산으로 인해 실제 게임 내 표시 수치와 일부 다를 수 있으며, 이는 게임 내 수치 표시 로직의 오류일 수 있습니다.
+            </p>
         </div>
     </div>
 </div>

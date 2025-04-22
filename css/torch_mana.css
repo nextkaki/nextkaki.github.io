@@ -1,51 +1,103 @@
-/* 전체 스타일 */
+/* 기본 스타일 */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: 'Noto Sans KR', sans-serif;
 }
 
 body {
-    background-color: #f5f5f5;
-    color: #333;
+    font-family: 'Noto Sans KR', sans-serif;
     line-height: 1.6;
+    color: #333;
+    background-color: #f5f5f5;
+    padding: 20px;
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
 }
 
 h1 {
     text-align: center;
-    margin-bottom: 30px;
     color: #2c3e50;
+    margin-bottom: 20px;
     padding-bottom: 10px;
     border-bottom: 2px solid #3498db;
 }
 
 h2 {
     color: #2c3e50;
-    margin-bottom: 15px;
+    margin: 15px 0;
     padding-bottom: 5px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #eee;
 }
 
 h3 {
     color: #3498db;
-    margin-bottom: 10px;
+    margin: 10px 0;
 }
 
-/* 전역 설정 영역 */
-.global-settings {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
+/* 폼 스타일 */
+.form-group {
+    margin-bottom: 15px;
 }
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+input[type="text"],
+input[type="number"],
+select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+}
+
+input[type="number"] {
+    width: 100%;
+}
+
+.custom-input {
+    margin-top: 5px;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+}
+
+.checkbox-group input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.checkbox-group label {
+    margin-bottom: 0;
+}
+
+.tooltip {
+    display: block;
+    font-size: 0.8em;
+    color: #777;
+    margin-top: 5px;
+}
+.custom-tooltip {
+    display: block;
+    font-size: 0.8em;
+    color: #777;
+    margin-top: 5px;
+}
+
 
 /* 스킬 카드 스타일 */
 .skills-container {
@@ -56,75 +108,17 @@ h3 {
 }
 
 .skill-card {
-    background-color: #fff;
-    padding: 20px;
+    background-color: #f9f9f9;
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
 
-.skill-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
-
-/* 폼 요소 스타일 */
-.form-group {
-    margin-bottom: 15px;
-}
-
-label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: 500;
-}
-
-input[type="text"],
-input[type="number"],
-select {
-    width: 100%;
+.hp-modifier {
+    background-color: #fff3f3;
     padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 14px;
-}
-
-input[type="number"] {
-    -moz-appearance: textfield;
-}
-
-input[type="number"]::-webkit-outer-spin-button,
-input[type="number"]::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-
-.checkbox-group {
-    display: flex;
-    align-items: center;
-}
-
-.checkbox-group input[type="checkbox"] {
-    margin-right: 10px;
-    width: 18px;
-    height: 18px;
-}
-
-.checkbox-group label {
-    margin-bottom: 0;
-}
-
-.custom-input {
+    border-radius: 5px;
     margin-top: 10px;
-}
-
-/* 툴팁 스타일 */
-.tooltip {
-    display: block;
-    font-size: 12px;
-    color: #666;
-    margin-top: 5px;
-    font-style: italic;
 }
 
 /* 버튼 스타일 */
@@ -132,17 +126,16 @@ input[type="number"]::-webkit-inner-spin-button {
     display: flex;
     justify-content: center;
     gap: 20px;
-    margin-bottom: 30px;
+    margin: 20px 0;
 }
 
 button {
-    padding: 12px 25px;
+    padding: 10px 20px;
     border: none;
-    border-radius: 4px;
-    font-size: 16px;
-    font-weight: 500;
+    border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    font-weight: bold;
+    transition: background-color 0.3s;
 }
 
 #calculate-btn {
@@ -163,114 +156,164 @@ button {
     background-color: #c0392b;
 }
 
-/* 결과 영역 스타일 */
+/* 결과 스타일 */
 .results {
-    background-color: #fff;
-    padding: 20px;
+    background-color: #f9f9f9;
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    margin-bottom: 30px;
-    display: block;
+    padding: 20px;
+    margin-top: 20px;
 }
 
 .result-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 20px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 .result-item {
+    background-color: white;
     padding: 15px;
-    border-radius: 6px;
-    background-color: #f9f9f9;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
 
 .result-value {
-    font-size: 24px;
-    font-weight: 700;
-    color: #2c3e50;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #3498db;
     margin-top: 10px;
-    text-align: center;
 }
 
-#skill-results, #hp-seal-results {
-    font-size: 16px;
+.possible {
+    color: #27ae60;
+}
+
+.impossible {
+    color: #e74c3c;
 }
 
 .skill-result-item {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 8px;
-    padding-bottom: 8px;
-    border-bottom: 1px dashed #ddd;
+    padding: 5px 0;
+    border-bottom: 1px solid #eee;
 }
 
-.skill-result-item:last-child {
-    border-bottom: none;
-}
-
-#activation-status.possible {
-    color: #27ae60;
-}
-
-#activation-status.impossible {
-    color: #e74c3c;
-}
-
-/* 계산 정보 스타일 */
 .calculation-info {
-    background-color: #f9f9f9;
+    background-color: #eaf2f8;
     padding: 15px;
-    border-radius: 6px;
+    border-radius: 5px;
     margin-top: 20px;
 }
 
-.calculation-info h3 {
-    color: #2c3e50;
-    margin-bottom: 10px;
-}
-
 .calculation-info p {
-    margin-bottom: 5px;
-    font-size: 14px;
-}
-
-/* HP 봉인 관련 스타일 */
-#hp-results-container, #hp-total-container, #hp-remaining-container {
-    background-color: #fff8f8;
-}
-
-#hp-results-container h3, #hp-total-container h3, #hp-remaining-container h3 {
-    color: #e74c3c;
-}
-
-#total-hp-seal, #remaining-hp {
-    color: #e74c3c;
+    margin: 5px 0;
 }
 
 /* 푸터 스타일 */
 footer {
     text-align: center;
-    padding: 20px;
-    color: #7f8c8d;
-    font-size: 14px;
     margin-top: 20px;
+    color: #777;
+    font-size: 0.9em;
 }
 
-/* 반응형 디자인 */
+/* 반응형 스타일 */
 @media (max-width: 768px) {
-    .skills-container,
-    .result-container {
+    .skills-container {
         grid-template-columns: 1fr;
     }
     
-    .action-buttons {
-        flex-direction: column;
-        gap: 10px;
+    .result-container {
+        grid-template-columns: 1fr;
     }
-    
-    button {
-        width: 100%;
-    }
+}
+
+/* 보조 스킬 스타일 */
+.auxiliary-skills {
+    margin-top: 15px;
+}
+
+.auxiliary-list {
+    margin-bottom: 10px;
+}
+
+.auxiliary-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    background-color: #f0f8ff;
+    padding: 8px;
+    border-radius: 4px;
+}
+
+.auxiliary-item input {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.remove-auxiliary-btn {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 4px 8px;
+    cursor: pointer;
+    font-size: 0.8em;
+}
+
+.add-auxiliary-btn {
+    background-color: #2ecc71;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-size: 0.9em;
+    margin-top: 5px;
+}
+
+.add-auxiliary-btn:hover {
+    background-color: #27ae60;
+}
+
+/* 개척자의 길 활성화 시 스타일 */
+.pathfinder-active {
+    background-color: #e8f4fc;
+    border: 1px solid #3498db;
+}
+
+.pathfinder-disabled {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+/* 봉인률 초과 경고 스타일 */
+.seal-warning {
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+.skill-disabled {
+    background-color: #ffebee;
+    border: 1px solid #e74c3c;
+}
+
+.skill-disabled::after {
+    content: "봉인률 초과로 인해 사용 불가";
+    display: block;
+    color: #e74c3c;
+    font-size: 0.9em;
+    margin-top: 10px;
+    font-weight: bold;
+}
+.warning-message {
+    color: #c0392b;
+    background-color: #f9e6e6;
+    border: 1px solid #e74c3c;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+    font-size: 0.95em;
 }
