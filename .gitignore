@@ -1,0 +1,19 @@
+# node modules
+node_modules/
+
+# build output
+.next/
+out/
+
+# production
+.env
+.env.local
+.env.production
+.env.development
+
+# system
+.DS_Store
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
