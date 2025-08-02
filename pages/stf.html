@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ko" style="height: 100%; margin: 0; padding: 0;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Path of Exile 스트리머 팀 파이트</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --main-bg-color: #000000;
+            --text-color: #ffffff;
+            --highlight-color: #FEBA05;
+            --secondary-color: #FD0C2C;
+            --section-bg-color: #1a1a1a;
+        }
+        
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            line-height: 1.4;
+            color: var(--text-color);
+            background-color: var(--main-bg-color);
+            margin: 0;
+            padding: 15px;
+            min-height: 100%;
+            box-sizing: border-box;
+        }
+        h1, h2 {
+            font-family: 'Cinzel', serif;
+            color: var(--highlight-color);
+        }
+        h1 {
+            font-size: 2.5em;
+            text-align: center;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(253, 12, 44, 0.5);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            padding: 0 10px;
+        }
+        h2 {
+            font-size: 1.8em;
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 8px;
+            margin-top: 30px;
+        }
+        p {
+            margin-top: 8px;
+            margin-bottom: 8px;
+        }
+        ul {
+            margin-top: 8px;
+            margin-bottom: 8px;
+            padding-left: 25px;
+        }
+        .highlight, .warning, .team-vs {
+            background-color: var(--section-bg-color);
+            padding: 12px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border: 1px solid var(--highlight-color);
+        }
+        .warning {
+            background-color: var(--secondary-color);
+        }
+        .team-vs {
+            text-align: center;
+            font-size: 1.2em;
+        }
+        .icon {
+            margin-right: 10px;
+            color: var(--secondary-color);
+        }
+        .rule-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        .gradient-text {
+            background: linear-gradient(45deg, var(--highlight-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: bold;
+        }
+        .info-section {
+            background-color: rgba(254, 186, 5, 0.05);
+            border: 1px solid rgba(254, 186, 5, 0.3);
+            border-radius: 5px;
+            padding: 8px;
+            margin: 12px 0;
+            font-size: 0.8em;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 70px;
+        }
+        .info-item {
+            margin: 1px 0;
+            display: flex;
+            align-items: center;
+        }
+        .info-icon {
+            margin-right: 8px;
+            color: var(--highlight-color);
+            font-size: 0.9em;
+            width: 15px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+        strong {
+            color: var(--highlight-color);
+        }
+        /* 반응형 스타일 */
+        @media screen and (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+        }
+        
+        @media screen and (max-width: 480px) {
+            h1 {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>
+        <i class="fas fa-gamepad icon"></i>
+        Path of Exile 스트리머 팀 파이트
+    </h1>
+
+    <p><span class="gradient-text">스트리머 팀 파이트 (Streamer Team Fight)</span>는 스트리머와 시청자가 한 팀이 되어 점수를 모아 팀을 승리로 이끄는 리그입니다.<br>
+    SSFHC (솔로 하드코어) 모드에서 10일간 플레이어가 각자 플레이하며 포인트를 모아 팀에 기여할 수 있습니다.</p>
+
+    <div class="info-section">
+        <div class="info-item"><i class="fas fa-exclamation-circle info-icon"></i><strong>본 이벤트는 카카오 계정을 사용하는 유저만 참여가 가능합니다</strong>(개인정보 동의 문제로 해외 계정은 상품 지급 불가)</div>
+        <div class="info-item"><i class="fas fa-comments info-icon"></i>채팅채널: /Global 1116</div>
+        <div class="info-item"><i class="fas fa-ban info-icon"></i>욕설 등 불쾌감을 줄 수 있는 언행 시 리그 강퇴 처리 될 수 있습니다</div>
+    </div>
+
+    <h2>
+        <i class="fas fa-scroll icon"></i>
+        리그 룰
+    </h2>
+    <ul>
+        <li class="rule-item">
+            <strong>- S S F H C -</strong>
+        </li>
+        <li class="rule-item">
+            <i class="fas fa-skull icon"></i>
+            몬스터 피해 증가 I
+        </li>
+        <li class="rule-item">
+            <i class="fas fa-bolt icon"></i>
+            몬스터 속도 증가 I
+        </li>
+        <li class="rule-item">
+            <i class="fas fa-meteor icon"></i>
+            몬스터 투사체 증가
+        </li>
+        <li class="rule-item">
+            <i class="fas fa-expand-arrows-alt icon"></i>
+            몬스터 효과 범위 증가 I
+        </li>
+    </ul>
+
+    <h2>
+        <i class="fas fa-users icon"></i>
+        팀 룰
+    </h2>
+    <p>팀은 스트리머 A팀과 스트리머 B팀으로 나누어집니다.</p>
+    <p>스트리머 팀이 정해지면 A팀과 B팀은 각각 팀 명을 정하게 됩니다. 임시로 이전 리그의 팀명을 예로 들겠습니다.</p>
+    <div class="team-vs">
+        <strong>A 팀 (게임즈) VS B 팀 (카카오)</strong>
+    </div>
+    <p>시청자들은 닉네임에 팀 명을 포함하여 자동 참가하게 됩니다. (ex: 게임즈맨, 카카오_노누일호기 등)</p>
+    <div class="warning">
+        <i class="fas fa-exclamation-triangle icon"></i>
+        <strong>주의: 팀명을 정하지 않은 유저는 팀에 속하지 않아 상품을 획득할 수 없습니다.</strong>
+    </div>
+</body>
+</html>

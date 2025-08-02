@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko" style="height: 100%; margin: 0; padding: 0;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --main-bg-color: #000000;
+            --text-color: #ffffff;
+            --highlight-color: #FEBA05;
+            --secondary-color: #FD0C2C;
+            --section-bg-color: #1a1a1a;
+        }
+        
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--main-bg-color);
+            margin: 0;
+            padding: 20px;
+            min-height: 100%;
+            box-sizing: border-box;
+        }
+        h1, h2, h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--highlight-color);
+        }
+        h1 {
+            font-size: 2.5em;
+            text-align: center;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(253, 12, 44, 0.5);
+        }
+        h2 {
+            font-size: 1.8em;
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 10px;
+            margin-top: 40px;
+        }
+        .highlight {
+            background-color: var(--section-bg-color);
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+            border: 1px solid var(--highlight-color);
+        }
+        .point-rule {
+            background-color: var(--section-bg-color);
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+            border: 1px solid var(--secondary-color);
+        }
+        .point-calculation {
+            background-color: var(--highlight-color);
+            color: var(--main-bg-color);
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+            margin: 20px 0;
+            font-weight: bold;
+        }
+        .icon {
+            margin-right: 10px;
+            color: var(--secondary-color);
+        }
+        .rule-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        strong {
+            color: var(--highlight-color);
+        }
+    </style>
+</head>
+<body>
+    <h2>
+        <i class="fas fa-chart-bar icon"></i>
+        포인트 획득 방식 및 집계
+    </h2>
+    <p>포인트 획득 방식은 스트리머와 일반 시청자 모두 동일합니다. 아래 포인트 룰에 따라 획득한 포인트를 합산해 팀 점수가 됩니다.</p>
+    <h3>[포인트 룰]</h3>
+    <div class="point-rule">
+        <p><i class="fas fa-level-up-alt icon"></i><strong>레벨 포인트</strong>: 레벨 5당 +1P (최대 95레벨, 총 19P)</p>            
+        <p><i class="fas fa-crown icon"></i><strong>보스 킬 시작 +1P, 총 2P</strong>: 퀘스트 총주교/포식자 <em>일반도 허용</em></p>
+        <p><i class="fas fa-dragon icon"></i><strong>일반 보스 +2P, 총 16P</strong>: 앗지리/카타리나(83)/사이러스/메이븐/쉐이퍼/엘더/우버 엘더/우버 앗지리</p>
+        <p><i class="fas fa-map icon"></i><strong>17티어 지도 +2P, 총 10P</strong>: 흉물 지도/성역 지도/성채 지도/요새 지도/지구라트 지도</p>
+        <p><i class="fas fa-skull-crossbones icon"></i><strong>끔찍한 영역 및 우버 보스 +3P, 총 24P</strong>: 끔찍한 영역/우버 사이러스/우버 메이븐/우버 코텍스/우버 포식자/우버 총주교/우버 쉐이퍼/우버 우버 엘더</p>
+        <p><i class="fas fa-shield-alt icon"></i> <strong>개인 최대 포인트는 총 71P</strong></p>
+        <p><i class="fas fa-coins icon"></i> <strong>현상금 포인트 +1P</strong>: 현상금 포인트는 시청자들이 건 어려운 현상금 미션을 클리어 하면 획득할 수 있습니다. 현상금 상품은 현상금 획득자에게 제공되고, 현상금 포인트는 팀에 귀속 됩니다..</p>
+    </div>
+    <div class="notice">
+        <p><i class="fas fa-exclamation-triangle icon"></i><strong>주의사항:</strong> 포인트는 '계정'이 아닌 '캐릭터'를 기준으로 합니다. 전직 변경 시 레벨 포인트를 포함한 모든 포인트가 초기화됩니다!</p>
+    </div>
+    <h2>
+        <i class="fas fa-trophy icon"></i>
+        팀 포인트 계산
+    </h2>
+    <div class="point-calculation">
+       [ 팀 포인트 = 유배자 포인트(각 팀 상위 20명의 포인트) + 스트리머 포인트 + 현상금 포인트 ]
+    </div>
+    <p>스트리머와 시청자 모두의 점수가 합산되기 때문에 스트리머와 시청자가 모두 합심해야 승리할 수 있는 리그입니다.</p>
+    <p>각 팀 점수와 포인트 랭킹은 홈페이지를 통해 매일 갱신됩니다.</p>
+</body>
+</html>
